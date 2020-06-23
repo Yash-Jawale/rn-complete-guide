@@ -21,13 +21,27 @@ export default function App() {
 		]);
 	};
 
+	const removeGoalHandler = (itemId) => {
+		setCourseGoals((currentGoals) => {
+			return currentGoals.filter((goal) => goal.key !== itemId);
+		});
+	};
+
 	return (
 		<View style={styles.screen}>
 			<GoalInput onAddGoal={addGoalHandler} />
 			<FlatList
 				// keyExtractor={(item, index) => item.key} DEFAULT (ALSO ID IS SUPPORTED)
 				data={courseGoals}
-				renderItem={(itemData) => <GoalItem title={itemData.item.value} />}
+				renderItem={(itemData) => {
+					return (
+						<GoalItem
+							title={itemData.item.value}
+							id={itemData.item.key}
+							onDelete={removeGoalHandler}
+						/>
+					);
+				}}
 			/>
 		</View>
 	);
