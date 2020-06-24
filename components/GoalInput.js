@@ -8,6 +8,11 @@ const GoalItem = (props) => {
 		setEnteredGoal(enteredText);
 	};
 
+	const addGoalHandler = () => {
+		props.onAddGoal(enteredGoal);
+		setEnteredGoal("");
+	};
+
 	//() => props.onAddGoal(enteredGoal)
 
 	return (
@@ -19,7 +24,8 @@ const GoalItem = (props) => {
 					onChangeText={goalInputHandler}
 					value={enteredGoal}
 				/>
-				<Button title="ADD" onPress={props.onAddGoal.bind(this, enteredGoal)} />
+				<Button title="CANCEL" color="red" onPress={props.onCancel} />
+				<Button title="ADD" onPress={addGoalHandler} />
 			</View>
 		</Modal>
 	);
